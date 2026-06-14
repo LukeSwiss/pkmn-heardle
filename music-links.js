@@ -16,7 +16,7 @@ var musicListWithLinks = [
         answer: 3,
     },
     {
-        url: "https://soundcloud.com/gscsoundtrack/oak-research-lab",
+        url: "https://soundcloud.com/beignet3/professor-oaks-laboratory",
         answer: 4,
     },
     {
@@ -124,7 +124,7 @@ var musicListWithLinks = [
         answer: 30,
     },
     {
-        url: "https://soundcloud.com/gscsoundtrack/casino",
+        url: "https://soundcloud.com/beignet3/rocket-game-corner-pokemon-red",
         answer: 31,
     },
     {
@@ -3752,7 +3752,7 @@ var musicListWithLinks = [
         answer: 930,
     },
     {
-        url: "https://soundcloud.com/user-744542609/poke-mon-xy-tower-of-mastery",
+        url: "https://soundcloud.com/beignet3/tower-of-mastery-pokemon-x-y",
         answer: 931,
     },
     {

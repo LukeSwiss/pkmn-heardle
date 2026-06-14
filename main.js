@@ -50,6 +50,14 @@ var app = (function () {
   }
 
   // Translation constants are in translation.js
+  for (let lg of Object.keys(flags)) {
+    flags[lg] =
+      '<img style="width:16px;height:16px" src="' +
+      flags[lg] +
+      '" alt="' +
+      flagsAlt[lg][language] +
+      '" />';
+  }
 
   function changeLanguage(code) {
     language = code;

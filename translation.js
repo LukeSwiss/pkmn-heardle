@@ -9,6 +9,17 @@ const flags = {
     fr: "./flags/fr.png",
     en: "./flags/en.png",
 };
+// Alt text for accessibility
+const flagsAlt = {
+  fr: {
+    en: "French Flag",
+    fr: "Drapeau français",
+  },
+  en: {
+    en: "US Flag",
+    fr: "Drapeau État-Unis",
+  },
+};
 const aboutT = { fr: "A propos", en: "about" };
 const supportT = { fr: "support", en: "support" };
 const statsT = { fr: "stats", en: "stats" };
@@ -52,8 +63,8 @@ const shareT = {
         " song from the intro in as few tries as possible",
 };
 const supportPopupT = {
-    fr: 'Vous avez des questions ou trouvez des bugs ? Contactez Beignet0 sur Reddit, beignetSan sur Twitch, @beignet0.bsky.social sur Bluesky, beignet1139 sur Discord ou créez un ticket sur <a href="https://github.com/nterrien/pkmn-heardle/issues" target="_blank">Github</a>! <br><br>Vous ne voulez pas attendre jusqu\'à demain ? Vous pouvez aussi jouer à l\'infini à <a href="https://nterrien.github.io/pkmn-infinite-heardle/" title="Pokémon Infinite Heardle">Pokémon Infinite Heardle</a>. Remerciez les créateurs orignal du Pokémon Heardle, <a href="https://bsky.app/profile/sgtangel777.bsky.social" target="_blank">@SgtAngel777</a> and <a href="https://bsky.app/profile/nickwrightdata.ntw.app" target="_blank">@NickWrightData</a> !<br><br>Il existe également une version pour <a href="https://prateau.github.io/pmd-heardle/">Pokémon Donjon Mystère</a>, grâce à Ipfil.',
-    en: 'Have questions/run into bugs? DM Beignet0 on Reddit, beignetSan on Twitch, @beignet0.bsky.social on Bluesky, beignet1139 on Discord or create an issue in <a href="https://github.com/nterrien/pkmn-heardle/issues" target="_blank">Github</a>!<br><br>Don\'t want to wait until tomorrow? You can also play infinitely to <a href="https://nterrien.github.io/pkmn-infinite-heardle/" title="Pokémon Infinite Heardle">Pokémon Infinite Heardle</a>. Thank the original Pokémon Heardle creators <a href="https://bsky.app/profile/sgtangel777.bsky.social" target="_blank">@SgtAngel777</a> and <a href="https://bsky.app/profile/nickwrightdata.ntw.app" target="_blank">@NickWrightData</a>!<br><br>There\'s also a version for <a href="https://prateau.github.io/pmd-heardle/">Pokémon Mystery Dungeon</a>, thanks to Ipfil.',
+    fr: 'Vous avez des questions ou trouvez des bugs ? Contactez Beignet0 sur Reddit, beignetSan sur Twitch, <a href="https://bsky.app/profile/beignet0.bsky.social">@beignet0.bsky.social</a> sur Bluesky, beignet1139 sur Discord ou créez un ticket sur <a href="https://github.com/nterrien/pkmn-heardle/issues" target="_blank">Github</a>! <br><br>Vous ne voulez pas attendre jusqu\'à demain ? Vous pouvez aussi jouer à l\'infini à <a href="https://nterrien.github.io/pkmn-infinite-heardle/" title="Pokémon Infinite Heardle">Pokémon Infinite Heardle</a>. Remerciez les créateurs orignal du Pokémon Heardle, <a href="https://bsky.app/profile/sgtangel777.bsky.social" target="_blank">@SgtAngel777</a> and <a href="https://bsky.app/profile/nickwrightdata.ntw.app" target="_blank">@NickWrightData</a> !<br><br>Il existe également une version pour <a href="https://prateau.github.io/pmd-heardle/">Pokémon Donjon Mystère</a>, grâce à Ipfil.',
+    en: 'Have questions/run into bugs? DM Beignet0 on Reddit, beignetSan on Twitch, <a href="https://bsky.app/profile/beignet0.bsky.social">@beignet0.bsky.social</a> on Bluesky, beignet1139 on Discord or create an issue in <a href="https://github.com/nterrien/pkmn-heardle/issues" target="_blank">Github</a>!<br><br>Don\'t want to wait until tomorrow? You can also play infinitely to <a href="https://nterrien.github.io/pkmn-infinite-heardle/" title="Pokémon Infinite Heardle">Pokémon Infinite Heardle</a>. Thank the original Pokémon Heardle creators <a href="https://bsky.app/profile/sgtangel777.bsky.social" target="_blank">@SgtAngel777</a> and <a href="https://bsky.app/profile/nickwrightdata.ntw.app" target="_blank">@NickWrightData</a>!<br><br>There\'s also a version for <a href="https://prateau.github.io/pmd-heardle/">Pokémon Mystery Dungeon</a>, thanks to Ipfil.',
 };
 const howToPlayPopup1T = {
     fr:
@@ -127,8 +138,3 @@ const onSoundcloudTooltipT = {
     fr: " sur SoundCloud",
     en: " on SoundCloud",
 };
-
-for (let lg of Object.keys(flags)) {
-    flags[lg] =
-        '<img style="width:16px;height:16px" src="' + flags[lg] + '" alt="" />';
-}

@@ -2184,7 +2184,7 @@ var musicNameList = [
   {
     id: 436,
     en: "Decisive Battle! (Pokémon League) - Diamond/Pearl",
-    fr: "Combat décisif! (Pokémon League) - Diamant/Perle"
+    fr: "Combat décisif! (Ligue Pokémon) - Diamant/Perle"
   },
   {
     id: 437,
@@ -4724,7 +4724,7 @@ var musicNameList = [
   {
     id: 944,
     en: "Scary House - X/Y",
-    fr: "Miason Hantée - X/Y"
+    fr: "Maison Hantée - X/Y"
   },
   {
     id: 945,
