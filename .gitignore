@@ -1,3 +1,6 @@
 /archive
 *.zip
 createArchive.sh
+
+# Visual Studio local cache (Copilot indices, build state, window layout)
+.vs/
