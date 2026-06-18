@@ -10156,11 +10156,16 @@ var app = (function () {
     function jn(e, t, n) {
         let r, s, i, o;
         u(e, Cn, (e) => n(26, (r = e))), u(e, On, (e) => n(27, (s = e)));
-        let a = getTrackNumber(Vt.startDate),
+        let isInfiniteMode =
+            new URLSearchParams(window.location.search).get("infinite") === "true";
+
+        let a = isInfiniteMode
+            ? Math.floor(Math.random() * musicListWithLinks.length)
+            : getTrackNumber(Vt.startDate),
             l = {
                 url: s[a].url,
                 correctAnswer: s[a].answer,
-                id: a,
+                id: isInfiniteMode ? "infinite-" + Date.now() : a,
                 guessList: [],
                 hasFinished: !1,
                 hasStarted: !1,
@@ -10196,13 +10201,13 @@ var app = (function () {
             p();
         });
         null == localStorage.getItem(userStatsPrefix)
-            ? ((h = []), localStorage.setItem(userStatsPrefix, JSON.stringify(h)))
+            ? ((h = []), !isInfiniteMode && localStorage.setItem(userStatsPrefix, JSON.stringify(h)))
             : (h = JSON.parse(localStorage.getItem(userStatsPrefix))),
             (f = h.find((e) => e.id === l.id)),
             void 0 === f &&
             ((f = l),
                 h.push(f),
-                localStorage.setItem(userStatsPrefix, JSON.stringify(h)));
+            !isInfiniteMode && localStorage.setItem(userStatsPrefix, JSON.stringify(h)));
         let g,
             y,
             v = f.guessList,
@@ -10237,6 +10242,59 @@ var app = (function () {
             var u = [...Array(l).keys()];
             return shuffle(u, t)[t % l];
         }
+        function getRandomInfiniteTrack() {
+            var dailyIndex = getTrackNumber(Vt.startDate);
+            var nextIndex = Math.floor(Math.random() * musicListWithLinks.length);
+
+            while (musicListWithLinks.length > 1 && nextIndex === dailyIndex) {
+                nextIndex = Math.floor(Math.random() * musicListWithLinks.length);
+            }
+
+            return nextIndex;
+        }
+
+        function startInfiniteRound() {
+            isInfiniteMode = true;
+
+            var nextIndex = getRandomInfiniteTrack();
+
+            n(11, (a = nextIndex));
+
+            n(2, (l.url = s[nextIndex].url), l);
+            n(2, (l.correctAnswer = s[nextIndex].answer), l);
+            n(2, (l.id = "infinite-" + Date.now()), l);
+            n(2, (l.guessList = []), l);
+            n(2, (l.hasFinished = false), l);
+            n(2, (l.hasStarted = false), l);
+
+            n(6, (v = []));
+
+            n(5, (f.guessList = v), f);
+            n(5, (f.hasFinished = false), f);
+            n(5, (f.gotCorrect = false), f);
+            n(5, (f.score = 0), f);
+
+            n(8, (w.gameIsActive = true), w);
+
+            i.resetAndPlay();
+        }
+        var infiniteButton;
+
+        setTimeout(function () {
+            infiniteButton = document.createElement("button");
+
+            infiniteButton.innerText = "Play Infinite Mode";
+            infiniteButton.className = "infinite-mode-button";
+
+            infiniteButton.onclick = function () {
+                window.location.href =
+                    window.location.pathname + "?infinite=true&t=" + Date.now();
+            };
+
+            infiniteButton.style.display = "none";
+
+            document.body.appendChild(infiniteButton);
+        }, 0);
         null == localStorage.getItem("firstTime") &&
             (_("help", howToPlayT[language]),
                 localStorage.setItem("firstTime", "false"));
@@ -10301,7 +10359,7 @@ var app = (function () {
                     } else if (findMusic.year > correctMusic.year) {
                         yearHint = "Older than " + findMusic.year + ".";
                     } else {
-                        yearHint = findMusic.year + " is correct.";
+                        yearHint = findMusic.year + " is correct!";
                     }
 
                     consoleHint = findMusic.console == correctMusic.console ? findMusic.console + " is correct!" : findMusic.console + " is incorrect.";
@@ -10357,15 +10415,15 @@ var app = (function () {
                             genreHint: genreHint
                         }))
                     );
-                    n(5, (f.guessList = v), f),
-                    localStorage.setItem(userStatsPrefix, JSON.stringify(h)),
+                n(5, (f.guessList = v), f),
+                    !isInfiniteMode && localStorage.setItem(userStatsPrefix, JSON.stringify(h)),
                     (v.length != Vt.maxAttempts && 1 != s) ||
                     ((o = s),
                         n(8, (w.gameIsActive = !1), w),
                         n(5, (f.hasFinished = !0), f),
                         n(5, (f.gotCorrect = o), f),
                         n(5, (f.score = v.length), f),
-                        localStorage.setItem(userStatsPrefix, JSON.stringify(h)),
+                    !isInfiniteMode && localStorage.setItem(userStatsPrefix, JSON.stringify(h)),
                         i.resetAndPlay(),
                         o
                             ? (pe("wonGame", {
@@ -10391,7 +10449,12 @@ var app = (function () {
                         }),
                         pe("gameStats#" + l.id, {
                             name: v,
-                        }));
+                        }),
+                        infiniteButton &&
+                        ((infiniteButton.innerText = isInfiniteMode
+                            ? "Next Infinite Song"
+                            : "Play Infinite Mode"),
+                            (infiniteButton.style.display = "block")));
             },
             function (e) {
                 _(e.detail.name, e.detail.title, e.detail.hasFrame);
