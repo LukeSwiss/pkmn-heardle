@@ -10184,7 +10184,8 @@ var app = (function () {
             document.addEventListener(
                 d,
                 function () {
-                    document[c] ||
+                    isInfiniteMode ||
+                        document[c] ||
                         a === getTrackNumber(Vt.startDate) ||
                         location.reload(!0);
                 },
