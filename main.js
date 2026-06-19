@@ -10281,10 +10281,23 @@ var app = (function () {
         }
         var infiniteButton;
 
+        function showInfiniteButton() {
+            if (!infiniteButton) return;
+
+            infiniteButton.innerText = isInfiniteMode
+                ? "Next Infinite Song"
+                : "Play Infinite Mode";
+
+            infiniteButton.style.display = "block";
+        }
+
         setTimeout(function () {
             infiniteButton = document.createElement("button");
 
-            infiniteButton.innerText = "Play Infinite Mode";
+            infiniteButton.innerText = isInfiniteMode
+                ? "Next Infinite Song"
+                : "Play Infinite Mode";
+
             infiniteButton.className = "infinite-mode-button";
 
             infiniteButton.onclick = function () {
@@ -10295,6 +10308,10 @@ var app = (function () {
             infiniteButton.style.display = "none";
 
             document.body.appendChild(infiniteButton);
+
+            if (f.hasFinished) {
+                showInfiniteButton();
+            }
         }, 0);
         null == localStorage.getItem("firstTime") &&
             (_("help", howToPlayT[language]),
@@ -10451,11 +10468,7 @@ var app = (function () {
                         pe("gameStats#" + l.id, {
                             name: v,
                         }),
-                        infiniteButton &&
-                        ((infiniteButton.innerText = isInfiniteMode
-                            ? "Next Infinite Song"
-                            : "Play Infinite Mode"),
-                            (infiniteButton.style.display = "block")));
+                        showInfiniteButton());
             },
             function (e) {
                 _(e.detail.name, e.detail.title, e.detail.hasFrame);
