@@ -5188,7 +5188,7 @@ var app = (function () {
                         "\n\n" +
                         t +
                         "\n\n" +
-                        "https://nterrien.github.io/pkmn-heardle/";
+                        "https://lukeswiss.github.io/pkmn-heardle/";
                     if (
                         !navigator.share ||
                         !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
